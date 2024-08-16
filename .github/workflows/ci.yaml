@@ -36,4 +36,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/reactapp-helm-argocd:${{github.run_id}}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/reactapp-helm-argocd:v1
+          # tags: ${{ secrets.DOCKERHUB_USERNAME }}/reactapp-helm-argocd:${{github.run_id}}
