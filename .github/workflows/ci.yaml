@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '22'
-     
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
@@ -36,6 +36,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          # tags: ${{ secrets.DOCKERHUB_USERNAME }}/reactapp-helm-argocd:${{ github.run_id }}
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/reactapp-helm-argocd:v1
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/reactapp-helm-argocd:cache
+          cache-to: type=inline
