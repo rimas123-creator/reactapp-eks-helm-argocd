@@ -38,5 +38,3 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/reactapp-helm-argocd:v1
           platforms: linux/arm64
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/reactapp-helm-argocd:cache
-          cache-to: type=inline
