@@ -8,7 +8,7 @@ image:
   repository: caderrimas/reactapp-helm-argocd
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "10644407301"
+  tag: "10645197110"
 
 ingress:
   enabled: false
