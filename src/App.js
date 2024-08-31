@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Welcome to ReactApp EKS Helm ArgoCD</h1>
+        <h1>Welcome to ReactApp EKS Helm ArgoCD...</h1>
         <p>Your journey into Complete DevOps starts here.</p>
         <a href="#start-section" className="App-button">Get Started</a>
       </header>
