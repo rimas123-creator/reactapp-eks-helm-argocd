@@ -7,6 +7,7 @@ on:
     paths-ignore:
       - 'README.md'
       - 'helm/**'
+      - 'k8s/**'
 
 jobs:
   build-and-push:
@@ -36,5 +37,28 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/reactapp-helm-argocd:v1
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/reactapp-helm-argocd:${{github.run_id}}
           # platforms: linux/arm64
+      
+  update-newtag-in-helm-chart:
+    runs-on: ubuntu-latest
+
+    needs: push
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.TOKEN }}
+
+      - name: Update tag in Helm chart
+        run: |
+          sed -i 's/tag: .*/tag: "${{github.run_id}}"/' helm/my-react-app-chart/values.yaml
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "caderrimas1999@gmail.com"
+          git config --global user.name "Cader Rimas"
+          git add helm/my-react-app-chart/values.yaml
+          git commit -m "Update tag in Helm chart"
+          git push
